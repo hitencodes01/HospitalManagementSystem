@@ -8,6 +8,14 @@ const patientSchema = mongoose.Schema({
             type : Number,
             required : true
         },
+        disease : {
+            type : String,
+            required : true
+        },
+        date : {
+            type : Date,
+            required : true
+        },
     })
 const Patient = mongoose.model("Patient",patientSchema)
 export default Patient

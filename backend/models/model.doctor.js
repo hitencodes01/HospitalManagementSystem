@@ -8,7 +8,15 @@ const doctorSchema = mongoose.Schema({
     specialization : {
         type : String,
         required : true
-    }
+    },
+    degree : {
+        type : String,
+        required : true
+    },
+    dateOfJoining : {
+        type : Date,
+        required : true
+    },
 })
 
 const Doctor = mongoose.model("Doctor", doctorSchema)

@@ -13,6 +13,10 @@ const appointmentSchema = mongoose.Schema({
         type : Date,
         required : true
     },
+    disease : {
+        type : String,
+        required : true
+    }
 })
 
 const Appointment = mongoose.model("Appointment",appointmentSchema)

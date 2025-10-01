@@ -14,11 +14,10 @@ export const getPatient = async (req, res) => {
 
 
 export const postPatient = async (req, res) => {
-  const { name, age } = req.body;
+  const {name , age, disease , doctor ,date} = req.body;
   try {
-    const patient = await Patient.create({ name, age });
-    console.log(patient);
-    res.json(patient);
+    const patient = await Patient.create({name , age, disease , doctor ,date});
+    res.status(201).json({message : "patient added"});
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
