@@ -12,7 +12,11 @@ const patientSchema = mongoose.Schema({
             type : String,
             required : true
         },
-        date : {
+        father_name : {
+            type : String,
+            required : true
+        },
+        date_of_appointment : {
             type : Date,
             required : true
         },
