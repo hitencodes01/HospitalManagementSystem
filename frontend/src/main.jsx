@@ -9,6 +9,7 @@ import RegisterAdmin from "./components/admin/RegisterAdmin.jsx";
 import LogInAdmin from "./components/admin/LogInAdmin.jsx";
 import LogInUser from './components/user/LogInUser.jsx'
 import RegisterUser from './components/user/RegisterUser.jsx'
+import UserDashboard from "./components/user/UserDashboard.jsx";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
     path: "/user/login",
     element: <LogInUser />,
   },
+  {
+    path : "/user/dashboard",
+    element : <UserDashboard/>
+  }
 ]);
 
 createRoot(document.getElementById("root")).render(

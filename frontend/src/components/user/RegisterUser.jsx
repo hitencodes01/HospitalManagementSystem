@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 export default function RegisterUser() {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleRegister = async () => {
-    const response = await fetch("http://localhost:8000/user", {
+    const response = await fetch("http://localhost:8000/user/register", {
       method: "POST",
       body: JSON.stringify({ name, email, password }),
       headers: {
@@ -13,7 +14,11 @@ export default function RegisterUser() {
       },
     });
     console.log(await response.json());
-    console.log(response.message);
+    if (response.status === 201) {
+      navigate("/user/login");
+    } else {
+      console.log(response.error);
+    }
   };
 
   return (
@@ -21,7 +26,7 @@ export default function RegisterUser() {
       <h1 className="text-2xl font-bold text-blue-700 mb-6 text-center">
         User Register
       </h1>
-      <form className="flex flex-col gap-4">
+      <form className="flex flex-col gap-4" onSubmit={(e) => {e.preventDefault(); handleRegister()}}>
         <label htmlFor="name" className="font-semibold">
           Username
         </label>
@@ -55,7 +60,7 @@ export default function RegisterUser() {
         <button
           type="submit"
           className="mt-4 py-2 px-4 bg-blue-500 text-white rounded font-semibold hover:bg-blue-600 transition"
-          onSubmit={handleRegister}
+          
         >
           Register
         </button>
