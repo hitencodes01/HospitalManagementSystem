@@ -10,6 +10,7 @@ import LogInUser from './components/user/LogInUser.jsx'
 import RegisterUser from './components/user/RegisterUser.jsx'
 import UserDashboard from "./components/user/UserDashboard.jsx";
 import AdminDashboard from "./components/admin/AdminDashboard.jsx";
+import AddAppointment from "./components/user/AddAppointment.jsx";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
   {
     path : "/user/dashboard",
     element : <UserDashboard/>
+  },
+  {
+    path : '/user/dashboard/new-appointment',
+    element : <AddAppointment/>
   }
 ]);
 

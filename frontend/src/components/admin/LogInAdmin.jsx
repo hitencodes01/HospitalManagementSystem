@@ -12,6 +12,7 @@ export default function LogInAdmin() {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials : "include"
     });
     if(response.status === 200){
       navigate("/admin/dashboard");

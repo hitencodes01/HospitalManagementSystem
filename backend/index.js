@@ -5,8 +5,12 @@ import patients from './routes/patient/patient.js'
 import { connectDB } from './db/connectDB.js';
 import cors from 'cors'
 const app = express();
-app.use(cors())
+
 app.use(express.json())
+app.use(cors({
+    origin : "http://localhost:5173",
+    credentials : true
+}))
 app.use("/admin",admin)
 app.use("/user",user)
 app.use("/patients",patients)

@@ -1,9 +1,9 @@
-import Admin from '../../models/mode.admin.js'
-
+import Admin from "../../models/mode.admin.js";
 export const adminRegister = async (req, res) => {
   const { name, email, password } = await req.body;
+
   const emailExist = await Admin.find({ email });
-  if (emailExist.length>0) {
+  if (emailExist.length > 0) {
     res.status(400).json({ error: "email already exist" });
   }
   const response = await Admin.create({ name, email, password });

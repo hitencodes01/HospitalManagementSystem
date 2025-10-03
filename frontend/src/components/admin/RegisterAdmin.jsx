@@ -12,6 +12,7 @@ export default function RegisterAdmin() {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials : "include"
     });
     if (response.status === 201) {
       navigate("/admin/login");

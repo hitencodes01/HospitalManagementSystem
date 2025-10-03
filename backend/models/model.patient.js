@@ -20,6 +20,10 @@ const patientSchema = mongoose.Schema({
             type : Date,
             required : true
         },
+        get_appointment : {
+            type : Boolean,
+            required : true
+        }
     })
 const Patient = mongoose.model("Patient",patientSchema)
 export default Patient
