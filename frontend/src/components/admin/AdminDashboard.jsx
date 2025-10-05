@@ -6,7 +6,6 @@ export default function AdminDashboard() {
   const [appointmentList, setAppointmentList] = useState([]);
   return (
     <>
-      <Patient />
     </>
   );
 }

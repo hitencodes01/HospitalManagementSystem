@@ -9,5 +9,5 @@ export const userLogin = async (req, res) => {
     if (user.password !== password) {
         return res.status(401).json({ error: "email or password is incorrect" });
     }
-    res.status(200).json({ message: "welcome" });
+    res.status(200).json({ message: "welcome", uId : user._id });
 }

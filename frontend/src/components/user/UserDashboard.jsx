@@ -1,10 +1,24 @@
 import LInkButton from '../LInkButton.jsx'
 import { Outlet } from 'react-router-dom'
+import Cookie from 'js-cookie'
+import { useEffect } from 'react'
 
 export default function UserDashboard() {
+  useEffect(()=>{
+    getUserAppointments()
+  },[])
   const getUserAppointments = async () => {
-    // await fetch(`http://localhost:8000/patients/${}`)
+    const response = await fetch(`http://localhost:8000/user/getUser`,{
+      method : "POST",
+      body: JSON.stringify({"userId" : Cookie.get("uId")}),
+      headers : {
+        "Content-Type" : "application/json"
+      }
+    })
+    const data = await response.json()
+    console.log(data)
   }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 via-white to-green-100 flex flex-col items-center p-8">
       <div className="w-full max-w-2xl bg-white rounded-xl shadow-lg p-8 flex flex-col items-center">
@@ -14,7 +28,7 @@ export default function UserDashboard() {
           text={"New Appointment"}
           className="block w-full text-center py-3 rounded-lg bg-blue-500 text-white font-semibold shadow hover:bg-blue-600 transition mb-6"
         />
-        <Outlet />
+        
       </div>
     </div>
   )

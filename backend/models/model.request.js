@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-const patientSchema = mongoose.Schema({
+const requestSchema = mongoose.Schema({
         name : {
             type : String,
             required: true
@@ -10,20 +10,20 @@ const patientSchema = mongoose.Schema({
         },
         disease : {
             type : String,
-            required : true
+            required : true,
         },
-        father_name : {
-            type : String,
+        date_of_request : {
+            type : Date,
             required : true
         },
         date_of_appointment : {
             type : Date,
-            required : true
         },
-        get_appointment : {
-            type : Boolean,
+        userId : {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : "User",
             required : true
         }
     })
-const Patient = mongoose.model("Patient",patientSchema)
-export default Patient
+const Request = mongoose.model("Request",requestSchema)
+export default Request

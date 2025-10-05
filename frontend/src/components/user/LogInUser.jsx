@@ -1,10 +1,24 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Cookie from "js-cookie";
+import { useEffect } from "react";
 
 export default function LogInUser() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  useEffect(() => {
+    (async () => {
+      if (Cookie.get("uId")) {
+        const response = await fetch(`http://localhost:8000/user/${Cookie.get("uId")}`);
+        if (response.status === 200) {
+          const data = await response.json();
+          setEmail(data.email);
+          setPassword(data.password);
+        }
+      }
+    })();
+  }, []);
   const handleLogin = async () => {
     const response = await fetch("http://localhost:8000/user/login", {
       method: "POST",
@@ -13,7 +27,9 @@ export default function LogInUser() {
         "Content-Type": "application/json",
       },
     });
+    const data = await response.json();
     if (response.status === 200) {
+      Cookie.set("uId", data.uId);
       navigate("/user/dashboard");
     } else {
       console.log(response.error);
@@ -37,6 +53,7 @@ export default function LogInUser() {
         <input
           onChange={(e) => setEmail(e.target.value)}
           type="email"
+          value={email}
           id="user-name"
           placeholder="Enter your email"
           className="border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -46,6 +63,7 @@ export default function LogInUser() {
         </label>
         <input
           onChange={(e) => setPassword(e.target.value)}
+          value={password}
           type="password"
           id="password"
           placeholder="Enter password"

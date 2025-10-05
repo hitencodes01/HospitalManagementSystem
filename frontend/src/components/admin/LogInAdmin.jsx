@@ -1,10 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import Cookie from 'js-cookie'
 export default function LogInAdmin() {
+  
   const navigate = useNavigate();
   const [email,setEmail] = useState("")
   const [password ,setPassword] = useState("")
+  useEffect(()=>{
+    (async()=>{
+      if(Cookie.get("aId")){
+        const response = await fetch(`http://localhost:8000/admin/getAdmin/${Cookie.get("aId")}`)
+        if(response.status===200){
+          const data = await response.json()
+          setEmail(data.email)
+          setPassword(data.password)
+        }
+      }
+    })()
+  },[])
   const handleLogin = async () => {
     const response = await fetch("http://localhost:8000/admin/login", {
       method: "POST",
@@ -15,6 +28,8 @@ export default function LogInAdmin() {
       credentials : "include"
     });
     if(response.status === 200){
+      const data = await response.json()
+      Cookie.set("aId" ,data.aId)
       navigate("/admin/dashboard");
     }
     console.log(response.error)
@@ -31,6 +46,7 @@ export default function LogInAdmin() {
         <input
           type="email"
           id="user-name"
+          value={email}
           placeholder="Enter your email"
           onChange={(e)=>setEmail(e.target.value)}
           className="border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -41,6 +57,7 @@ export default function LogInAdmin() {
         <input
           type="password"
           id="password"
+          value={password}
           placeholder="Enter password"
           onChange={(e)=>setPassword(e.target.value)}
           className="border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
