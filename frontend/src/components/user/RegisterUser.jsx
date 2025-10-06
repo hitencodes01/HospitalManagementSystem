@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Cookie from 'js-cookie'
 export default function RegisterUser() {
   const navigate = useNavigate();
   const [name, setName] = useState("");
@@ -13,8 +14,9 @@ export default function RegisterUser() {
         "Content-Type": "application/json",
       },
     });
-    console.log(await response.json());
     if (response.status === 201) {
+      const data = await response.json()
+      Cookie.set("uId", data.uId , {expires : 30});
       navigate("/user/login");
     } else {
       console.log(response.error);

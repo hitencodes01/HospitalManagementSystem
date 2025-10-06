@@ -10,5 +10,6 @@ export const registerUser = async(req,res)=>{
    if(!response){
     res.status(400).json({error : "cannot registered admin"})
    }
-   res.status(201).json({message : `${email} succesfully registered`})
+   const user = await User.findOne({email})
+   res.status(201).json({message : `${email} succesfully registered` , "uId" : user._id})
 }

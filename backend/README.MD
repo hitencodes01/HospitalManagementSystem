@@ -1,41 +1,64 @@
-## Backend Folder Structure
+# 🏥 Hospital Management System – Backend
 
-The `backend` folder contains the server-side code for the Hospital Management System. Below is an overview of its typical structure:
-
-```
-backend/
-├── controllers/      # Handles request logic
-├── models/           # Database schemas/models
-├── routes/           # API route definitions
-├── middleware/       # Custom middleware functions
-├── config/           # Configuration files (e.g., DB, environment)
-├── utils/            # Utility/helper functions
-├── app.js            # Main Express application
-└── package.json      # Backend dependencies and scripts
-```
-
-### How to Run the Backend
-
-1. Navigate to the `backend` folder:
-    ```bash
-    cd backend
-    ```
-2. Install dependencies:
-    ```bash
-    npm install
-    ```
-3. Start the server:
-    ```bash
-    npm start
-    ```
-
-### Key Features
-
-- RESTful API endpoints for managing patients, doctors, appointments, and billing.
-- Authentication and authorization.
-- Database integration (e.g., MongoDB, PostgreSQL).
-- Error handling and logging.
+This is the **backend server** for the College Mini Project **Hospital Management System**, built using **Node.js**, **Express**, and **MongoDB (Mongoose)**.  
+It provides RESTful APIs to manage patients, doctors, appointments, and other related operations in a hospital environment.
 
 ---
 
-*Refer to the backend folder for detailed implementation and documentation.*
+## 🚀 Features
+
+- RESTful API with Express.js
+- MongoDB integration using Mongoose
+- JWT-based authentication
+- Session management with `express-session`
+- File uploads using `multer`
+- Secure environment configuration using `dotenv`
+- Cross-Origin support with `cors`
+
+---
+
+## 🧰 Tech Stack
+
+| Technology         | Purpose                   |
+| ------------------ | ------------------------- |
+| Node.js            | Runtime environment       |
+| Express.js         | Web framework             |
+| MongoDB + Mongoose | Database & ODM            |
+| JWT                | Authentication            |
+| Multer             | File uploads              |
+| dotenv             | Environment configuration |
+| cookie-parser      | Cookie handling           |
+| cors               | Cross-origin requests     |
+| nodemon            | Development auto-restart  |
+
+---
+
+## 📦 Installation
+
+1. **Clone the repository**
+
+   git clone https://github.com/your-username/hospital-management-backend.git
+   cd hospital-management-backend
+
+2. **Install dependencies**
+   npm install
+
+3. **Create a .env file in the root directory and add**
+   MONGO_URI=your_mongodb_connection_string
+   JWT_SECRET=your_secret_key
+   SESSION_SECRET=your_session_secret
+
+4. **Run the server**
+   npm start
+
+## 📁 Folder Structure
+
+backend/
+├── models/ # Mongoose schemas
+├── routes/ # Express route handlers
+├── controllers/ # Business logic
+├── middleware/ # Authentication, validation, etc.
+├── uploads/ # Uploaded files
+├── index.js # Entry point
+├── .env # Environment variables
+└── package.json

@@ -10,7 +10,9 @@ export default function LogInUser() {
   useEffect(() => {
     (async () => {
       if (Cookie.get("uId")) {
-        const response = await fetch(`http://localhost:8000/user/${Cookie.get("uId")}`);
+        const response = await fetch(
+          `http://localhost:8000/user/${Cookie.get("uId")}`
+        );
         if (response.status === 200) {
           const data = await response.json();
           setEmail(data.email);
@@ -29,7 +31,7 @@ export default function LogInUser() {
     });
     const data = await response.json();
     if (response.status === 200) {
-      Cookie.set("uId", data.uId , {expires : 30});
+      Cookie.set("uId", data.uId, { expires: 30 });
       navigate("/user/dashboard");
     } else {
       console.log(response.error);
