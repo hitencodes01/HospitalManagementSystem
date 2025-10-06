@@ -29,7 +29,7 @@ export default function LogInUser() {
     });
     const data = await response.json();
     if (response.status === 200) {
-      Cookie.set("uId", data.uId);
+      Cookie.set("uId", data.uId , {expires : 30});
       navigate("/user/dashboard");
     } else {
       console.log(response.error);

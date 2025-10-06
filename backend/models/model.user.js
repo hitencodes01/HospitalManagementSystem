@@ -28,6 +28,10 @@ const userSchema = mongoose.Schema({
   request : {
     type : [mongoose.Schema.Types.ObjectId],
     ref : "Request"
+  },
+  profile_pic: {
+    type: String,
+    default: "https://via.placeholder.com/150"
   }
 });
 const User = mongoose.model("User", userSchema);

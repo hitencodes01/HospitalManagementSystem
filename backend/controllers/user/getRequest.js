@@ -11,5 +11,5 @@ export const getUser = async(req,res)=>{
   } catch (e) {
     console.log(e);
   }
-  res.status(200).json({ message: "welcome", response });
+  res.status(200).json({response});
 }

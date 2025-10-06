@@ -29,7 +29,7 @@ export default function LogInAdmin() {
     });
     if(response.status === 200){
       const data = await response.json()
-      Cookie.set("aId" ,data.aId)
+      Cookie.set("aId" ,data.aId , {expires : 365})
       navigate("/admin/dashboard");
     }
     console.log(response.error)

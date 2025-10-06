@@ -1,26 +1,45 @@
-import React, { useState } from "react";
-import Cookie from 'js-cookie'
+import React, { useEffect, useState } from "react";
+import Cookie from "js-cookie";
+import { useNavigate } from "react-router-dom";
 export default function AddAppointment() {
+  const navigate = useNavigate()
   const [name, setName] = useState("");
   const [age, setAge] = useState(0);
   const [disease, setDisease] = useState("");
 
+  useEffect(() => {
+    (async () => {
+      if (Cookie.get("uId")) {
+        const response = await fetch(
+          `http://localhost:8000/user/${Cookie.get("uId")}`
+        );
+        if (response.status === 200) {
+          const data = await response.json();
+          setName(data.name)
+        }
+      }
+    })();
+  }, []);
   const postData = async () => {
-    const response = await fetch("http://localhost:8000/user/user-appointment", {
-      method: "POST",
-      body: JSON.stringify({
-        name,
-        age,
-        disease,
-        userId : Cookie.get("uId")
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json()
-    // console.log(data.data);
-  };
+    const response = await fetch(
+      "http://localhost:8000/user/user-appointment",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          name,
+          age,
+          disease,
+          userId: Cookie.get("uId"),
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if(response.status === 200){
+      navigate("/user/dashboard")
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 via-white to-green-100 flex flex-col items-center justify-center p-8">
@@ -39,6 +58,7 @@ export default function AddAppointment() {
             Name
           </label>
           <input
+          value={name}
             onChange={(e) => setName(e.target.value)}
             type="text"
             id="name"
@@ -51,6 +71,7 @@ export default function AddAppointment() {
           <input
             onChange={(e) => setAge(e.target.value)}
             type="number"
+            value={age}
             id="age"
             placeholder="Enter patient's Age"
             className="border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
