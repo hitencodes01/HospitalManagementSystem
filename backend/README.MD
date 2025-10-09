@@ -1,6 +1,6 @@
 # 🏥 Hospital Management System – Backend
 
-This is the **backend server** for the College Mini Project **Hospital Management System**, built using **Node.js**, **Express**, and **MongoDB (Mongoose)**.  
+This is the **backend server** for the College Major Project **Hospital Management System**, built using **Node.js**, **Express**, and **MongoDB (Mongoose)**.  
 It provides RESTful APIs to manage patients, doctors, appointments, and other related operations in a hospital environment.
 
 ---
@@ -10,7 +10,6 @@ It provides RESTful APIs to manage patients, doctors, appointments, and other re
 - RESTful API with Express.js
 - MongoDB integration using Mongoose
 - JWT-based authentication
-- Session management with `express-session`
 - File uploads using `multer`
 - Secure environment configuration using `dotenv`
 - Cross-Origin support with `cors`

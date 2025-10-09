@@ -11,6 +11,7 @@ import RegisterUser from './components/user/RegisterUser.jsx'
 import UserDashboard from "./components/user/UserDashboard.jsx";
 import AdminDashboard from "./components/admin/AdminDashboard.jsx";
 import AddAppointment from "./components/user/AddAppointment.jsx";
+import UserInfo from "./components/user/UserInfo.jsx";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
   {
     path : "/user/dashboard",
     element : <UserDashboard/>
+  },
+  {
+    path : "/user/dashboard/user-info",
+    element : <UserInfo/>
   },
   {
     path : '/user/dashboard/new-appointment',

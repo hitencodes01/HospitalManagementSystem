@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import AllRequest from "./AllRequest";
-import UserInfo from "./UserInfo";
 
 export default function UserDashboard() {
   const something = () => {
@@ -8,10 +7,9 @@ export default function UserDashboard() {
   };
 
   return (
-    
     <div className="min-h-screen bg-gradient-to-br from-blue-200 via-white to-green-200 flex flex-col items-center p-8">
       <div className="details">
-        {/* <UserInfo /> */}
+        <Link to={"/user/dashboard/user-info"}>===</Link>
       </div>
       <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl p-10 flex flex-col items-center animate-fade-in">
         <h1 className="text-4xl font-extrabold text-blue-800 mb-8 text-center drop-shadow-lg tracking-wide">
@@ -24,7 +22,7 @@ export default function UserDashboard() {
           + Book New Appointment
         </Link>
       </div>
-      <AllRequest/>
+      <AllRequest />
       <style>{`
         .animate-fade-in {
           animation: fadeIn 0.8s ease;
